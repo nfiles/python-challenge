@@ -1,3 +1,5 @@
+use regex::Regex;
+
 fn main() {
     let mess = String::from(
         "kAewtloYgcFQaJNhHVGxXDiQmzjfcpYbzxlWrVcqsmUbCunkfxZWDZjUZMiGqhRRiUvGmYmvnJIHEmbT
@@ -1251,4 +1253,13 @@ dCdFLtBQPtFQuCdKOrpndJNUFQIDSbetUKylhSUjcDVtbiQrWMRQhAwGUZyPneCGUjGBBTkLqxLAXXtB
 KfErkDaWMFZZeuqDmXKJEGHyToPUhPphfVhgUZgbIuRAtWnroImpJKqqmEZqeNQCKzhjIkKQHURWLXFw
 PBuijeoTSpsVLaOGuLVjMZXkBvVXwUuHfBihziiavGSYofPNeKsTXruMUumRRPQJzvSzJkKbtSipiqBd",
     );
+
+    let re = Regex::new(r"[a-z][A-Z]{3}([a-z])[A-Z]{3}[a-z]").unwrap();
+
+    let mut result = String::new();
+    for cap in re.captures_iter(&mess) {
+        result.push_str(&mess[cap.get(1).unwrap().range()]);
+    }
+
+    println!("{}", result);
 }
