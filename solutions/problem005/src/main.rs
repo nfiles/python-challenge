@@ -14,9 +14,7 @@ fn main() {
     // print the results
     for list in deserialized {
         for (bytes, num) in list {
-            for _ in 0..num {
-                print!("{}", bytes);
-            }
+            print!("{}", bytes.repeat(num as usize));
         }
         println!("");
     }
